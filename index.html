@@ -22,29 +22,56 @@
         <![endif]-->
 
         <!-- Add your site or application content here -->
-        <div class="select_table_from_db">
-            <div>
-                <input type="radio" name="radio" >Groups<br>
-                <input type="radio" name="radio" >Students<br>
-                <input type="radio" name="radio" >Teachers<br>
-                <input type="radio" name="radio" >Subjects<br>
-            </div>
-            <div id="id_of_data">
-                <p><label>
-                    <input id="number" type="number" name="id_of_recording" value="35" min="1" max="40" step="1">
-                </label></p>
-            </div>
+        </a><a href="#create-teacher">go to teachers</a> | <a href="#create-student">go to students</a> | <a href="#create-subject">go to subjects</a>
+        <div id='create-group'>
+            <form id="group-form">
+                <input id="name_of_group" placeholder="name_of_group...">
+                <input id="speciality" placeholder="speciality...">
+                <input id="faculty" placeholder="faculty...">
+                <input type="submit" value="Add group">
+            </form>
         </div>
-        <div>
-            <button id="btn-get-all" onclick="get_radio()">Get all data</button>
-            <button>Get 1 recording</button>
+        <div id='group-container'></div>
+        </a><a href="#create-teacher">go to teachers</a> | <a href="#create-group">go to groups</a> | <a href="#create-subject">go to subjects</a>
+        <div id='create-student'>
+            <form id="student-form">
+                <input id="name" placeholder="name...">
+                <input id="surname" placeholder="surname...">
+                <input id="patronymic" placeholder="patronymic...">
+                <input id="course" placeholder="course...">
+                <input id="group_id" placeholder="group_id...">
+                <input type="submit" value="Add student">
+            </form>
         </div>
+        <div id='student-container'></div>
+        <a href="#create-student">go to students</a> | <a href="#create-group">go to groups</a> | <a href="#create-subject">go to subjects</a>
+        <div id='create-teacher'>
+            <form id="teacher-form">
+                <input id="name_tch" placeholder="name...">
+                <input id="surname_tch" placeholder="surname...">
+                <input id="patronymic_tch" placeholder="patronymic...">
+                <input id="department" placeholder="department...">
+                <input type="submit" value="Add teacher">
+            </form>
+        </div>
+        <div id='teacher-container'></div>
+        <a href="#create-teacher">go to teachers</a><a href="#create-student">go to students</a><a href="#create-group">go to groups</a>
+        <div id='create-subject'>
+            <form id="subject-form">
+                <input id="name_of_subject" placeholder="name_of_subject...">
+                <input type="submit" value="Add subject">
+            </form>
+        </div>
+        <div id='subject-container'></div>
 
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
         <script src="js/plugins.js"></script>
         <script src="js/main.js"></script>
+        <script src="js/student.js"></script>
+        <script src="js/subject.js"></script>
+        <script src="js/teacher.js"></script>
 
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
         <script>
