@@ -10,10 +10,10 @@ document.addEventListener('DOMContentLoaded', function() {
         .then( subjectData => subjectData.forEach(function(subject) {
             allSubjects = subjectData
             subjectContainer.innerHTML += `
-      <div id=subject-${subject.id}>
+      <div class="card" id=subject-${subject.id}>
         <p>${subject.name_of_subject}</p>
-        <button data-id=${subject.id} id="edit-${subject.id}" data-action="edit">Edit</button>
-        <button data-id=${subject.id} id="delete-${subject.id}" data-action="delete">Delete</button>
+        <button class="btn btn-outline-warning" data-id=${subject.id} id="edit-${subject.id}" data-action="edit">Edit</button>
+        <button class="btn btn-outline-danger" data-id=${subject.id} id="delete-${subject.id}" data-action="delete">Delete</button>
       </div>
       <div id=edit-subject-${subject.id}>
       </div>`
@@ -37,10 +37,10 @@ document.addEventListener('DOMContentLoaded', function() {
             .then( subject => {
                 allSubjects.push(subject)
                 subjectContainer.innerHTML += `
-        <div id=subject-${subject.id}>
+        <div class="card" id=subject-${subject.id}>
           <p>Name of subject: ${subject.name_of_subject}</p>
-          <button data-id=${subject.id} id="edit-${subject.id}" data-action="edit">Edit</button>
-          <button data-id=${subject.id} id="delete-${subject.id}" data-action="delete">Delete</button>
+          <button class="btn btn-outline-warning" data-id=${subject.id} id="edit-${subject.id}" data-action="edit">Edit</button>
+          <button class="btn btn-outline-danger" data-id=${subject.id} id="delete-${subject.id}" data-action="delete">Delete</button>
         </div>
         <div id=edit-subject-${subject.id}>
         </div>`
@@ -84,10 +84,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 }).then( response => response.json() )
                     .then( subject => {
                         editedSubject.innerHTML = `
-            <div id=subject-${subject.id}>
+            <div class="card" id=subject-${subject.id}>
               <p>Name of subject: ${subject.name_of_subject}</p>
-              <button data-id=${subject.id} id="edit-${subject.id}" data-action="edit">Edit</button>
-              <button data-id=${subject.id} id="delete-${subject.id}" data-action="delete">Delete</button>
+              <button class="btn btn-outline-warning" data-id=${subject.id} id="edit-${subject.id}" data-action="edit">Edit</button>
+              <button class="btn btn-outline-danger" data-id=${subject.id} id="delete-${subject.id}" data-action="delete">Delete</button>
             </div>
             <div id=edit-subject-${subject.id}>
             </div>`
@@ -96,13 +96,16 @@ document.addEventListener('DOMContentLoaded', function() {
             }) // end of this event Listener for edit submit
 
         } else if (e.target.dataset.action === 'delete') {
-            document.querySelector(`#subject-${e.target.dataset.id}`).remove()
-            fetch(`${subjectURL}/${e.target.dataset.id}`, {
-                method: 'DELETE',
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            }).then( response => response.json())
+            const deletion = confirm('really nigga?');
+            if (deletion) {
+                document.querySelector(`#subject-${e.target.dataset.id}`).remove()
+                fetch(`${subjectURL}/${e.target.dataset.id}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                }).then(response => response.json())
+            }
         }
 
     }) // end of eventListener for editing and deleting a group

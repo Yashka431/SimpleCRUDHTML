@@ -11,9 +11,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+        <!-- JavaScript Bundle with Popper -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 
         <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="css/main.css">
+
+        <!-- CSS only -->
         <script src="js/vendor/modernizr-2.6.2.min.js"></script>
     </head>
     <body>
@@ -22,7 +27,9 @@
         <![endif]-->
 
         <!-- Add your site or application content here -->
-        </a><a href="#create-teacher">go to teachers</a> | <a href="#create-student">go to students</a> | <a href="#create-subject">go to subjects</a>
+        <br>
+        </a><a style="display:block; justify-content: space-between;" class="btn btn-primary stretched-link" href="#create-teacher">go to teachers</a> | <a style="display:block; justify-content: space-between;" class="btn btn-primary stretched-link" href="#create-student">go to students</a> | <a style="display:block; justify-content: space-between;" class="btn btn-primary stretched-link" href="#create-subject">go to subjects</a>
+        <br>
         <div id='create-group'>
             <form id="group-form">
                 <input id="name_of_group" placeholder="name_of_group...">
@@ -32,7 +39,9 @@
             </form>
         </div>
         <div id='group-container'></div>
-        </a><a href="#create-teacher">go to teachers</a> | <a href="#create-group">go to groups</a> | <a href="#create-subject">go to subjects</a>
+        <br>
+        </a><a style="display:block; justify-content: space-between;" class="btn btn-primary stretched-link" href="#create-teacher">go to teachers</a> | <a style="display:block; justify-content: space-between;" class="btn btn-primary stretched-link" href="#create-group">go to groups</a> | <a style="display:block; justify-content: space-between;" class="btn btn-primary stretched-link" href="#create-subject">go to subjects</a>
+        <br>
         <div id='create-student'>
             <form id="student-form">
                 <input id="name" placeholder="name...">
@@ -44,7 +53,9 @@
             </form>
         </div>
         <div id='student-container'></div>
-        <a href="#create-student">go to students</a> | <a href="#create-group">go to groups</a> | <a href="#create-subject">go to subjects</a>
+        <br>
+        <a style="display:block; justify-content: space-between;" class="btn btn-primary stretched-link" href="#create-student">go to students</a> | <a style="display:block; justify-content: space-between;" class="btn btn-primary stretched-link" href="#create-group">go to groups</a> | <a style="display:block; justify-content: space-between;" class="btn btn-primary stretched-link" href="#create-subject">go to subjects</a>
+        <br>
         <div id='create-teacher'>
             <form id="teacher-form">
                 <input id="name_tch" placeholder="name...">
@@ -55,7 +66,9 @@
             </form>
         </div>
         <div id='teacher-container'></div>
-        <a href="#create-teacher">go to teachers</a><a href="#create-student">go to students</a><a href="#create-group">go to groups</a>
+        <br>
+        <a style="display:block; justify-content: space-between;" class="btn btn-primary stretched-link" href="#create-teacher">go to teachers</a> | <a style="display:block; justify-content: space-between;" class="btn btn-primary stretched-link" href="#create-student">go to students</a> | <a style="display:block; justify-content: space-between;" class="btn btn-primary stretched-link" href="#create-group">go to groups</a>
+        <br>
         <div id='create-subject'>
             <form id="subject-form">
                 <input id="name_of_subject" placeholder="name_of_subject...">

@@ -10,14 +10,14 @@ document.addEventListener('DOMContentLoaded', function() {
         .then( studentData => studentData.forEach(function(student) {
             allStudents = studentData
             studentContainer.innerHTML += `
-      <div id=student-${student.id}>
+      <div class="card" id=student-${student.id}>
         <p>Name: ${student.name}</p>
         <p>Surname: ${student.surname}</p>
         <p>Patronymic: ${student.patronymic}</p>
         <p>Course: ${student.course}</p>
         <p>Group_id: ${student.group_id}</p>
-        <button data-id=${student.id} id="edit-${student.id}" data-action="edit">Edit</button>
-        <button data-id=${student.id} id="delete-${student.id}" data-action="delete">Delete</button>
+        <button class="btn btn-outline-warning" data-id=${student.id} id="edit-${student.id}" data-action="edit">Edit</button>
+        <button class="btn btn-outline-danger" data-id=${student.id} id="delete-${student.id}" data-action="delete">Delete</button>
       </div>
       <div id=edit-group-${student.id}>
       </div>`
@@ -49,14 +49,14 @@ document.addEventListener('DOMContentLoaded', function() {
             .then( student => {
                 allStudents.push(student)
                 studentContainer.innerHTML += `
-        <div id=student-${student.id}>
+        <div class="card" id=student-${student.id}>
             <p>Name: ${student.name}</p>
             <p>Surname: ${student.surname}</p>
             <p>Patronymic: ${student.patronymic}</p>
             <p>Course: ${student.course}</p>
             <p>Group_id: ${student.group_id}</p>
-          <button data-id=${student.id} id="edit-${student.id}" data-action="edit">Edit</button>
-          <button data-id=${student.id} id="delete-${student.id}" data-action="delete">Delete</button>
+          <button class="btn btn-outline-warning" data-id=${student.id} id="edit-${student.id}" data-action="edit">Edit</button>
+          <button class="btn btn-outline-danger" data-id=${student.id} id="delete-${student.id}" data-action="delete">Delete</button>
         </div>
         <div id=edit-student-${student.id}>
         </div>`
@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const editForm = studentContainer.querySelector(`#edit-student-${e.target.dataset.id}`)
             editForm.innerHTML = `
         <form class='form' id='edit-student' action='index.html' method='post'>
-          <form id="student-form">
+          <form class="card" id="student-form">
             <input required id="edit-name" placeholder="${studentData.name}">
             <input required id="edit-surname" placeholder="${studentData.surname}">
             <input required id="edit-patronymic" placeholder="${studentData.patronymic}">
@@ -111,14 +111,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 }).then( response => response.json() )
                     .then( student => {
                         editedStudent.innerHTML = `
-            <div id=student-${student.id}>
+            <div class="card" id=student-${student.id}>
                <p>Name: ${student.name}</p>
                <p>Surname: ${student.surname}</p>
                <p>Patronymic: ${student.patronymic}</p>
                <p>Course: ${student.course}</p>
                <p>Group_id: ${student.group_id}</p>
-              <button data-id=${student.id} id="edit-${student.id}" data-action="edit">Edit</button>
-              <button data-id=${student.id} id="delete-${student.id}" data-action="delete">Delete</button>
+              <button class="btn btn-outline-warning" data-id=${student.id} id="edit-${student.id}" data-action="edit">Edit</button>
+              <button class="btn btn-outline-danger" data-id=${student.id} id="delete-${student.id}" data-action="delete">Delete</button>
             </div>
             <div id=edit-student-${student.id}>
             </div>`
@@ -127,13 +127,16 @@ document.addEventListener('DOMContentLoaded', function() {
             }) // end of this event Listener for edit submit
 
         } else if (e.target.dataset.action === 'delete') {
-            document.querySelector(`#student-${e.target.dataset.id}`).remove()
-            fetch(`${studentURL}/${e.target.dataset.id}`, {
-                method: 'DELETE',
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            }).then( response => response.json())
+            const deletion = confirm('really nigga?');
+            if (deletion) {
+                document.querySelector(`#student-${e.target.dataset.id}`).remove()
+                fetch(`${studentURL}/${e.target.dataset.id}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                }).then( response => response.json())
+            }
         }
 
     }) // end of eventListener for editing and deleting a group

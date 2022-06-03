@@ -10,13 +10,13 @@ document.addEventListener('DOMContentLoaded', function() {
         .then( teacherData => teacherData.forEach(function(teacher) {
             allTeachers = teacherData
             teacherContainer.innerHTML += `
-      <div id=teacher-${teacher.id}>
+      <div class="card" id=teacher-${teacher.id}>
         <p>Name: ${teacher.name}</p>
         <p>Surname: ${teacher.surname}</p>
         <p>Patronymic: ${teacher.patronymic}</p>
         <p>Department: ${teacher.department}</p>
-        <button data-id=${teacher.id} id="edit-${teacher.id}" data-action="edit">Edit</button>
-        <button data-id=${teacher.id} id="delete-${teacher.id}" data-action="delete">Delete</button>
+        <button class="btn btn-outline-warning" data-id=${teacher.id} id="edit-${teacher.id}" data-action="edit">Edit</button>
+        <button class="btn btn-outline-danger" data-id=${teacher.id} id="delete-${teacher.id}" data-action="delete">Delete</button>
       </div>
       <div id=edit-teacher-${teacher.id}>
       </div>`
@@ -46,13 +46,13 @@ document.addEventListener('DOMContentLoaded', function() {
             .then( teacher => {
                 allTeachers.push(teacher)
                 teacherContainer.innerHTML += `
-        <div id=teacher-${teacher.id}>
+        <div class="card" id=teacher-${teacher.id}>
           <p>Name: ${teacher.name}</p>
           <p>Surname: ${teacher.surname}</p>
           <p>Patronymic: ${teacher.patronymic}</p>
           <p>Department: ${teacher.department}</p>    
-          <button data-id=${teacher.id} id="edit-${teacher.id}" data-action="edit">Edit</button>
-          <button data-id=${teacher.id} id="delete-${teacher.id}" data-action="delete">Delete</button>
+          <button class="btn btn-outline-warning" data-id=${teacher.id} id="edit-${teacher.id}" data-action="edit">Edit</button>
+          <button class="btn btn-outline-danger" data-id=${teacher.id} id="delete-${teacher.id}" data-action="delete">Delete</button>
         </div>
         <div id=edit-teacher-${teacher.id}>
         </div>`
@@ -104,13 +104,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 }).then( response => response.json() )
                     .then( teacher => {
                         editedTeacher.innerHTML = `
-            <div id=teacher-${teacher.id}>
+            <div class="card" id=teacher-${teacher.id}>
               <p>Name: ${teacher.name}</p>
               <p>Surname: ${teacher.surname}</p>
               <p>Patronymic: ${teacher.patronymic}</p>
               <p>Department: ${teacher.department}</p>  
-              <button data-id=${teacher.id} id="edit-${teacher.id}" data-action="edit">Edit</button>
-              <button data-id=${teacher.id} id="delete-${teacher.id}" data-action="delete">Delete</button>
+              <button class="btn btn-outline-warning" data-id=${teacher.id} id="edit-${teacher.id}" data-action="edit">Edit</button>
+              <button class="btn btn-outline-danger" data-id=${teacher.id} id="delete-${teacher.id}" data-action="delete">Delete</button>
             </div>
             <div id=edit-teacher-${teacher.id}>
             </div>`
@@ -119,13 +119,16 @@ document.addEventListener('DOMContentLoaded', function() {
             }) // end of this event Listener for edit submit
 
         } else if (e.target.dataset.action === 'delete') {
-            document.querySelector(`#teacher-${e.target.dataset.id}`).remove()
-            fetch(`${teacherURL}/${e.target.dataset.id}`, {
-                method: 'DELETE',
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            }).then( response => response.json())
+            const deletion = confirm('really nigga?');
+            if (deletion) {
+                document.querySelector(`#teacher-${e.target.dataset.id}`).remove()
+                fetch(`${teacherURL}/${e.target.dataset.id}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                }).then(response => response.json())
+            }
         }
 
     }) // end of eventListener for editing and deleting a group
